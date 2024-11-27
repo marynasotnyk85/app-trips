@@ -1,0 +1,15 @@
+
+<div *ngIf="loading$ | async" class="loading">Loading...</div>
+<div *ngIf="error$ | async as error" class="error">Error: {{ error }}</div>
+<div *ngIf="trip$ | async as trip" class="trip-detail">
+    <button (click)="goBack()" class="btn btn-primary">Back to Home</button>
+  <img [src]="trip.imageUrl" alt="{{ trip.title }}" />
+  <h1>{{ trip.title }}</h1>
+  <p>{{ trip.description }}</p>
+  <p><strong>Price:</strong> {{ trip.price | currency }}</p>
+  <p><strong>Rating:</strong> {{ trip.rating }}</p>
+  <p><strong>CO2 Emissions:</strong> {{ trip.co2 }} kg</p>
+  <p><strong>Tags:</strong> {{ trip.tags.join(", ") }}</p>
+</div>
+
+
