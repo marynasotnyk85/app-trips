@@ -14,9 +14,6 @@ export class TripService {
   loading$ = this.loadingSubject.asObservable();
   error$ = this.errorSubject.asObservable();
 
-  private apiUrl =
-    'https://iy3ipnv3uc.execute-api.eu-west-1.amazonaws.com/Prod/v1/trips';
-
   constructor(private http: HttpClient) {}
   /**
    * Fetch list of trips with optional filters, pagination, and sorting.
@@ -50,7 +47,7 @@ export class TripService {
     });
 
     return this.http
-      .get<{ trips: Trip[]; totalTrips: number; totalPages: number }>(
+      .get<{ trips: Trip[]; total: number; page: number }>(
         trips.GET_TRIPS,
         { params }
       )

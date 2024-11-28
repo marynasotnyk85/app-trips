@@ -1,76 +1,32 @@
-<div *ngIf="loading$ | async" class="loading-indicator">Loading trips...</div>
-
-<div *ngIf="error$ | async as error" class="error">
-  {{ error }}
-</div>
+<div>
 <div
   *ngIf="trips$ | async as trips"
-  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 m-4"
+  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
 >
-  <div *ngIf="trips.length > 0; else noTrips">
-    <div class="sort-controls">
-      <label for="sortBy">Sort by:</label>
-      <select id="sortBy" [(ngModel)]="sortBy" (change)="applySorting()">
-        <option value="price">Price</option>
-        <option value="creationDate">Creation Date</option>
-        <option value="rating">Rating</option>
-        <option value="name">Name</option>
-        <option value="verticalType">Vertical Type</option>
-      </select>
+  <!-- Trip Cards -->
+  <app-trip-card
+    *ngFor="let trip of trips"
+    [trip]="trip"
+    (click)="viewTripDetails(trip.id)"
+  ></app-trip-card>
 
-      <label for="sortOrder">Order:</label>
-      <select id="sortOrder" [(ngModel)]="sortOrder" (change)="applySorting()">
-        <option value="ASC">Ascending</option>
-        <option value="DESC">Descending</option>
-      </select>
-    </div>
 
-    <div
-      *ngFor="let trip of trips"
-      class="trip-card"
-      (click)="viewTripDetails(trip.id)"
-    >
-      <img [src]="trip.thumbnailUrl" alt="{{ trip.title }}" />
-      <h3>{{ trip.title }}</h3>
-      <p>Price: {{ trip.price | currency }}</p>
-      <p>Rating: {{ trip.rating }}</p>
-      <app-trip-badge
-        [rating]="trip.rating"
-        [nrOfRatings]="trip.nrOfRatings"
-        [co2]="trip.co2"
-      >
-      </app-trip-badge>
-    </div>
 
-    <div>{{ currentPage }}</div>
-    <!-- Pagination Controls -->
-    <div class="pagination">
-      <button
-        (click)="previousPage()"
-        [disabled]="currentPage === 1"
-        class="btn btn-primary"
-      >
-        Previous
-      </button>
 
-      <button (click)="nextPage()" class="btn btn-primary">Next</button>
+</div>
+<div class="flex justify-center py-8">
+  <div class="bg-gray-100 shadow-md rounded-lg px-6 py-4 w-full max-w-3xl">
+    <div class="flex justify-center">
+      <app-pagination
+        [totalPages]="totalPages"
+        [currentPage]="currentPage"
+        (onPageChange)="onPageChange.emit($event)"
+      ></app-pagination>
     </div>
   </div>
-  <ng-template #noTrips>
-    <p>No trips available.</p>
-  </ng-template>
-  <div>
-    <button (click)="getTripOfTheDay()">Get Trip of the Day</button>
-    <div *ngIf="tripOfTheDay$ | async as tripOfTheDay">
-      <h3>Trip of the Day</h3>
-      <img [src]="tripOfTheDay.thumbnailUrl" alt="{{ tripOfTheDay.title }}" />
-      <p>{{ tripOfTheDay.title }}</p>
-      <app-trip-badge
-        [rating]="tripOfTheDay.rating"
-        [nrOfRatings]="tripOfTheDay.nrOfRatings"
-        [co2]="tripOfTheDay.co2"
-      >
-      </app-trip-badge>
-    </div>
-  </div>
+</div>
+
+<ng-template #noTrips>
+  <p>No trips available.</p>
+</ng-template>
 </div>

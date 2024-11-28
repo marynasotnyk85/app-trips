@@ -38,7 +38,7 @@ describe('TripService', () => {
 
       const filters = { type: 'adventure' };
       const page = 1;
-      const limit = 10;
+      const limit = 9;
       const sortBy = 'name';
       const sortOrder = 'asc';
 
@@ -65,7 +65,7 @@ describe('TripService', () => {
     it('should handle errors gracefully', () => {
       const filters = {};
       const page = 1;
-      const limit = 10;
+      const limit = 9;
       const sortBy = '';
       const sortOrder = 'ASC';
 
@@ -92,7 +92,7 @@ describe('TripService', () => {
         return (
           request.url === trips.GET_TRIPS &&
           request.params.get('page') === '1' &&
-          request.params.get('limit') === '10' &&
+          request.params.get('limit') === '9' &&
           request.params.get('sortBy') === '' &&
           request.params.get('sortOrder') === 'ASC'
         );

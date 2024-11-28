@@ -6,3 +6,7 @@ export const trips = {
   GET_TRIP_OF_THE_DAY:
     'https://iy3ipnv3uc.execute-api.eu-west-1.amazonaws.com/Prod/v1/trips/random/trip-of-the-day',
 };
+
+export const settings = {
+  limit_cards_in_page : 9
+}

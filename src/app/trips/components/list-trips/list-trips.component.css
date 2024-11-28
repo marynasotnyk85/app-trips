@@ -1,0 +1,3 @@
+.flex {
+  @apply flex-wrap gap-6;
+}
