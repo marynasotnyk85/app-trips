@@ -17,8 +17,15 @@ import { TripOfTheDayComponent } from './components/trip-of-the-day/trip-of-the-
 import { PaginationComponent } from '../shared/pagination/pagination.component';
 
 @NgModule({
-  declarations: [HomeComponent, ListTripsComponent, TripCardComponent, TripOfTheDayComponent, TripDetailComponent, TripBadgeComponent,
-    SortingComponent, PaginationComponent
+  declarations: [
+    HomeComponent, 
+    ListTripsComponent, 
+    TripCardComponent, 
+    TripOfTheDayComponent, 
+    TripDetailComponent, 
+    TripBadgeComponent,
+    SortingComponent, 
+    PaginationComponent
   ],
   imports: [
     CommonModule,

@@ -11,7 +11,7 @@
     <!-- First Page -->
     <button
       (click)="goToPage(1)"
-      [class.bg-secondaryBlue]="currentPage === 1"
+      [class.bg-primaryBlue]="currentPage === 1"
       [class.text-white]="currentPage === 1"
       [class.text-slate-600]="currentPage !== 1"
       [class.bg-transparent]="currentPage !== 1"
@@ -29,7 +29,7 @@
     <ng-container *ngFor="let page of middlePages">
       <button
         (click)="goToPage(page)"
-        [class.bg-secondaryBlue]="currentPage === page"
+        [class.bg-primaryBlue]="currentPage === page"
         [class.text-white]="currentPage === page"
         [class.text-slate-600]="currentPage !== page"
         [class.bg-transparent]="currentPage !== page"
@@ -47,7 +47,7 @@
     <!-- Last Page -->
     <button
       (click)="goToPage(totalPages)"
-      [class.bg-secondaryBlue]="currentPage === totalPages"
+      [class.bg-primaryBlue]="currentPage === totalPages"
       [class.text-white]="currentPage === totalPages"
       [class.text-slate-600]="currentPage !== totalPages"
       [class.bg-transparent]="currentPage !== totalPages"
