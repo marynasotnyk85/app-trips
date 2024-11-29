@@ -1,19 +1,20 @@
 <div>
   <div *ngIf="tripOfTheDay$ | async as tripOfTheDay; else noTrip" 
   class="flex flex-col gap-4 ">
-    <h1 class="flex justify-center text-xl font-bold"> Trip of the day</h1>
+    <h1 class="flex justify-center font-heading text-heading text-secondaryBlue "> Trip of the day</h1>
     <img [src]="tripOfTheDay.thumbnailUrl" [alt]="tripOfTheDay.title" class="w-full rounded-md" />
     <div class="p-4">
-      <h6 class="flex justify-center text-slate-800 text-xl font-semibold">
+      <h6 class="flex justify-center font-heading text-heading text-textColor">
         {{ tripOfTheDay.title }}
       </h6>
     </div>
+    <div class="w-16 h-1 bg-secondaryBlue block mx-auto"></div>
 
       <div class="p-4 flex justify-between">  
-     <div><p class="text-slate-600 leading-normal font-light">
+     <div><p class="font-body text-body text-textColor leading-normal font-light">
         Price: {{ tripOfTheDay.price | currency }}
       </p>
-      <p class="text-slate-600 leading-normal font-light">
+      <p class="font-body text-body text-textColor leading-normal font-light">
         Rating: {{ tripOfTheDay.rating }}
       </p>
     </div>

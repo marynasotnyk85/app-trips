@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 
   currentPage = 1; // Pagination state
   limit =  settings.limit_cards_in_page; // Items per page
-  sortBy = '';
+  sortBy = 'creationDate';
   sortOrder = 'ASC';
   isTripOfTheDayVisible = false; 
   totalPagination!:number;

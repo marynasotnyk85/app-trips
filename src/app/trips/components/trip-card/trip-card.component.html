@@ -1,5 +1,5 @@
   <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96 hover:shadow-lg">
-      <div class="flex justify-center relative h-56 m-2.5 overflow-hidden text-white rounded-md">
+      <div class="flex justify-center relative h-56 m-2.5 overflow-hidden font-heading text-heading rounded-md">
         <img
         [src]="trip.thumbnailUrl"
         alt="{{ trip.title }}"
@@ -7,15 +7,17 @@
       alt="card-image" />
       </div>
       <div class="p-4">
-        <h6 class="flex justify-center mb-2 text-slate-800 text-xl font-semibold">
+        <h6 class="flex justify-center mb-2 font-heading text-heading text-textColor">
           {{ trip.title }}
         </h6>
         </div>
+        <div class="w-16 h-1 bg-secondaryBlue block mx-auto"></div>
+
         <div class="p-4 flex justify-between">
-        <div><p class="text-slate-600 leading-normal font-light">
+        <div><p class="font-body text-body text-textColor textleading-normal ">
           Price: {{ trip.price | currency }}
         </p>
-        <p class="text-slate-600 leading-normal font-light">
+        <p class="font-body text-body text-textColor leading-normal font-light">
           Rating: {{ trip.rating }}
         </p>
       </div>

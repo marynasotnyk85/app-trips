@@ -21,7 +21,7 @@ import { Component, Input } from '@angular/core';
         background-color: #ffb74d; /* Amber */
       }
       .good {
-        background-color: #4caf50; /* Green */
+        background-color: #46d28c; /* Green */
       }
       .awesome {
         background-color: #2196f3; /* Blue */

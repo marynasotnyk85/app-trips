@@ -1,4 +1,5 @@
 <div *ngIf="trips$ | async as trips">
+
   <ng-container *ngIf="trips.length > 0; else noTrips">
     <!-- Trip Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -11,7 +12,7 @@
 
     <!-- Pagination -->
     <div class="flex justify-center py-8" *ngIf="totalPages > 1">
-      <div class="bg-gray-100 shadow-md rounded-lg px-6 py-4 w-full max-w-3xl">
+
         <div class="flex justify-center">
           <app-pagination
             [totalPages]="totalPages"
@@ -19,7 +20,7 @@
             (onPageChange)="onPageChange.emit($event)"
           ></app-pagination>
         </div>
-      </div>
+
     </div>
   </ng-container>
 </div>

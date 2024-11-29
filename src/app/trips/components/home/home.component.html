@@ -22,12 +22,19 @@
          *ngIf="isTripOfTheDayVisible"
          class="flex justify-center items-center w-full"
        >
-         <div class="w-1/3 bg-white p-4 shadow-lg rounded-lg transition-all duration-300">
-           <app-trip-of-the-day
-             [tripOfTheDay$]="tripOfTheDay$"
-             (reload)="getTripOfTheDay()"
-           ></app-trip-of-the-day>
-         </div>
+       <div class="relative w-1/3 bg-white p-4 shadow-lg rounded-lg border-4 border-dashed border-secondaryBlue transition-all duration-300">
+        <span class="absolute top-[-10px] left-[-10px] bg-secondaryBlue text-white rounded-full p-1 shadow-md">
+          ✈️
+        </span>
+        <span class="absolute bottom-[-10px] right-[-10px] bg-secondaryBlue text-white rounded-full p-1 shadow-md">
+          🌍
+        </span>
+        <app-trip-of-the-day
+          [tripOfTheDay$]="tripOfTheDay$"
+          (reload)="getTripOfTheDay()"
+        ></app-trip-of-the-day>
+      </div>
+      
        </div>
         <app-list-trips
           [trips$]="trips$"
@@ -43,7 +50,7 @@
   
     <!-- "Trip of the Day" Button -->
     <button
-  class="fixed bottom-20 right-4 bg-primaryBlue text-white px-4 py-3 rounded-full shadow-lg hover:bg-blue-700 transition flex items-center space-x-2"
+  class="fixed bottom-20 right-28 btn-secondary rounded-full shadow-lg transition flex items-center space-x-2"
   (click)="toggleTripOfTheDay()"
 >
   <svg

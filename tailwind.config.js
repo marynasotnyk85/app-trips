@@ -20,6 +20,7 @@ module.exports = withMT({
         body: '400',
       },
       colors: {
+        textColor: '#2b265b',
         primaryBlue: '#3560ab',  
         secondaryBlue: '#00bcd6',
         secondaryGreen: '#46d28c',
