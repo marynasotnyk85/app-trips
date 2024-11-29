@@ -12,10 +12,11 @@ import { TripDetailComponent } from './trips/components/trip-detail/trip-detail.
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './shared/header/header.component';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
