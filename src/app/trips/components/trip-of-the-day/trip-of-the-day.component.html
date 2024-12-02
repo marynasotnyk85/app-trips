@@ -1,6 +1,6 @@
 <div>
   <div *ngIf="tripOfTheDay$ | async as tripOfTheDay; else noTrip" 
-  class="flex flex-col gap-4 min-w-full  " >
+  class="flex flex-col gap-4 min-w-full"        (click)="viewTripDetails(tripOfTheDay.id)">
   <div class="relative flex flex-col my-6 p-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96 hover:shadow-lg">
     <h1 class="flex justify-center font-heading text-heading text-secondaryBlue "> Trip of the day</h1>
     <img [src]="tripOfTheDay.thumbnailUrl" [alt]="tripOfTheDay.title" class="w-full rounded-md" />

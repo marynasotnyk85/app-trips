@@ -17,6 +17,7 @@ import { TripOfTheDayComponent } from './components/trip-of-the-day/trip-of-the-
 import { PaginationComponent } from '../shared/pagination/pagination.component';
 
 
+
 @NgModule({
   declarations: [
     HomeComponent, 
@@ -26,7 +27,7 @@ import { PaginationComponent } from '../shared/pagination/pagination.component';
     TripDetailComponent, 
     TripBadgeComponent,
     SortingComponent, 
-    PaginationComponent
+    PaginationComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +35,6 @@ import { PaginationComponent } from '../shared/pagination/pagination.component';
     FormsModule,
     ReactiveFormsModule,
     TripsRoutingModule,
-    // Register feature reducer
     StoreModule.forFeature('trip', tripReducer),
     EffectsModule.forFeature([TripEffects]),
   ],

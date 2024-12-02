@@ -5,12 +5,11 @@ import { Trip } from '../trip.model';
 export const loadTrips = createAction(
   '[Trip API] Load Trips',
   props<{
-    filters: any;
     page: number;
     limit: number;
     sortBy: string;
     sortOrder: string;
-  }>() // Define filters dynamically
+  }>() 
 );
 
 export const loadTripsSuccess = createAction(
@@ -26,7 +25,7 @@ export const loadTripsFailure = createAction(
 /* LOAD TRIP DETAIL */
 export const loadTripDetail = createAction(
   '[Trip API] Load Trip Detail',
-  props<{ id: string }>() // Pass trip id
+  props<{ id: string }>() 
 );
 
 export const loadTripDetailSuccess = createAction(

@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-
-
 
 import { Trip, TripState } from '../../store/trip.model';
 import { loadTripOfTheDay, loadTrips  } from '../../store/trip/trip.actions';
@@ -23,8 +21,8 @@ import { settings } from '../../../constants/constants.endpoint';
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit {
 
+export class HomeComponent implements OnInit {
 
   trips$!: Observable<any[]>; // Observable for trips data
   loading$!: Observable<boolean>; // Loading state
@@ -32,6 +30,7 @@ export class HomeComponent implements OnInit {
   tripOfTheDay$! : Observable<Trip | null>; //= this.store.select(selectTripOfTheDay); // Trip of the day
   totalPages$!: Observable<number>;
   totalTrips$!: Observable<number>;
+
 
   totalPages!: number;
 
@@ -72,14 +71,12 @@ export class HomeComponent implements OnInit {
 
     // Load initial data
     this.loadTrips();
-
   }
 
 
   loadTrips(): void {
     this.store.dispatch(
       loadTrips({
-        filters: {}, // Adjust filters dynamically
         page: this.currentPage,
         limit: this.limit,
         sortBy: this.sortBy,
@@ -92,7 +89,6 @@ export class HomeComponent implements OnInit {
    // Toggle "Trip of the Day" view
    toggleTripOfTheDay(): void {
     this.isTripOfTheDayVisible = !this.isTripOfTheDayVisible;
-       // Scroll to top when the "Trip of the Day" becomes visible
        if (this.isTripOfTheDayVisible) {
         window.scrollTo({
           top: 0,
@@ -118,12 +114,6 @@ export class HomeComponent implements OnInit {
     this.sortBy = sortBy;
     this.sortOrder = sortOrder;
     this.loadTrips();
-
-    // Smooth scroll to top
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
   }
 
  

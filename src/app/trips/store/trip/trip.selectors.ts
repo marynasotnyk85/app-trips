@@ -7,7 +7,7 @@ export const selectTripState = createFeatureSelector<TripState>('trip');
 /* Select all trips */
 export const selectAllTrips = createSelector(
   selectTripState,
-  (state) => state.trips || []
+  (state) => state.trips
 );
 
 /* Select loading state */
@@ -25,13 +25,13 @@ export const selectError = createSelector(
 /* Select total trips */
 export const selectTotalTrips = createSelector(
   selectTripState,
-  (state) => state.totalTrips || 0
+  (state) => state.totalTrips
 );
 
 /* Select total pages */
 export const selectTotalPages = createSelector(
   selectTripState,
-  (state) => state.totalPages || 0
+  (state) => state.totalPages
 );
 
 /* Select trip details*/

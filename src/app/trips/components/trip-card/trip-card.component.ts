@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Trip } from '../../store/trip.model';
 
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./trip-card.component.css']
 })
 export class TripCardComponent {
-  @Input() trip!: any;
+  @Input() trip!: Trip;
 
   viewDetails() {
     console.log(`Viewing details for Trip ID: ${this.trip.id}`);

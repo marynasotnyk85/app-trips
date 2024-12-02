@@ -18,6 +18,7 @@
 <app-trip-of-the-day
   [tripOfTheDay$]="tripOfTheDay$"
   (reload)="getTripOfTheDay()"
+  (viewDetails)="viewTripDetails($event)"
 ></app-trip-of-the-day>
 
 </div>

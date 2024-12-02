@@ -12,16 +12,6 @@ import {
 } from './trip.actions';
 import { TripState } from '../trip.model';
 
-/* Define state for trips and trip detail */
-/*export interface TripState {
-  trips: Trip[];
-  tripDetail: Trip | null;
-  loading: boolean;
-  error: string | null;
-  page: number;
-  limit: number;
-}
-  */
 
 export const initialState: TripState = {
   trips: [],

@@ -16,8 +16,7 @@ export class TripService {
 
   constructor(private http: HttpClient) {}
   /**
-   * Fetch list of trips with optional filters, pagination, and sorting.
-   * @param filters - Object containing filter key-value pairs.
+   * Fetch list of trips with optional pagination, and sorting.
    * @param page - Current page number.
    * @param limit - Number of items per page.
    * @param sortBy - Field to sort by.
@@ -25,7 +24,6 @@ export class TripService {
    */
 
   getTrips(
-    filters: any,
     page: number,
     limit: number,
     sortBy: string,
@@ -40,11 +38,7 @@ export class TripService {
       .set('sortBy', sortBy.toString())
       .set('sortOrder', sortOrder.toString());
 
-    Object.keys(filters).forEach((key) => {
-      if (filters[key] !== undefined) {
-        params = params.set(key, filters[key]);
-      }
-    });
+ 
 
     return this.http
       .get<{ trips: Trip[]; total: number; page: number }>(
@@ -52,7 +46,7 @@ export class TripService {
         { params }
       )
       .pipe(
-        tap((data) => console.log('Trip Service Data:', data)), // Log response data
+        tap((data) => console.log('Trip Service Data:', data)), 
         catchError((error) => {
           console.error('Trip Service Error:', error);
           throw error;
@@ -65,9 +59,9 @@ export class TripService {
    * @param id - Trip ID.
    */
   getTripDetails(id: string): Observable<Trip> {
-    const endpoint = trips.GET_TRIP_DETAIL.replace('{id}', id); // Replace placeholder with actual ID
+    const endpoint = trips.GET_TRIP_DETAIL.replace('{id}', id); 
     return this.http.get<Trip>(endpoint).pipe(
-      tap((data) => console.log('Trip Details:', data)), // Log response
+      tap((data) => console.log('Trip Details:', data)), 
       catchError((error) => {
         this.errorSubject.next('Failed to fetch trip details.');
         console.error('Trip Details Error:', error);
@@ -81,7 +75,7 @@ export class TripService {
    */
   getTripOfTheDay(): Observable<Trip> {
     return this.http.get<Trip>(trips.GET_TRIP_OF_THE_DAY).pipe(
-      tap((data) => console.log('Trip of the Day:', data)), // Log response
+      tap((data) => console.log('Trip of the Day:', data)), 
       catchError((error) => {
         this.errorSubject.next('Failed to fetch trip of the day.');
         console.error('Trip of the Day Error:', error);

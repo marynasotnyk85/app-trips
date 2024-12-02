@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TripService } from '../../services/trip.service';
-import { Trip, TripState } from '../../store/trip.model';
-import { catchError, map, Observable, of } from 'rxjs';
-import {
-  loadTripDetail,
-  loadTripDetailSuccess,
-  loadTrips,
-} from 'src/app/trips/store/trip/trip.actions';
-import { Store, select } from '@ngrx/store';
+import { Trip } from '../../store/trip.model';
+import { Observable} from 'rxjs';
+import { loadTripDetail } from 'src/app/trips/store/trip/trip.actions';
+import { Store } from '@ngrx/store';
 import {
   selectError,
   selectLoading,
@@ -44,6 +39,6 @@ export class TripDetailComponent implements OnInit {
   goBack(): void {
     this.router.navigate(['/trips'], {
       queryParamsHandling: 'preserve',
-    }); // Navigate to the home page
+    }); 
   }
 }

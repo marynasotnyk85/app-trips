@@ -22,18 +22,17 @@ export class TripEffects {
   loadTrips$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadTrips),
-      switchMap(({ filters, page, limit, sortBy, sortOrder }) =>
-        this.tripService.getTrips(filters, page, limit, sortBy, sortOrder).pipe(
+      switchMap(({  page, limit, sortBy, sortOrder }) =>
+        this.tripService.getTrips( page, limit, sortBy, sortOrder).pipe(
           map((response) => {
-            console.log('API Response:', response); // Debugging API response
             return loadTripsSuccess({
-              trips: response.items, // Use `items` from the API response
-              totalTrips: response.total, // Use `total` from the API response
+              trips: response.items, 
+              totalTrips: response.total, 
               totalPages: Math.ceil(response.total / response.limit), // Calculate total pages
             });
           }),
           catchError((error) => {
-            console.error('API Error:', error); // Debugging API error
+            console.error('API Error:', error); 
             return of(loadTripsFailure({ error: error.message }));
           })
         )
@@ -56,17 +55,7 @@ export class TripEffects {
     )
   );
 
-  /*loadTripOfTheDay$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(loadTripOfTheDay),
-      switchMap(() =>
-        this.tripService.getTripOfTheDay().pipe(
-          map((trip) => loadTripOfTheDaySuccess({ trip })),
-          catchError((error) => of(loadTripOfTheDayFailure({ error })))
-        )
-      )
-    )
-  );*/
+
   loadTripOfTheDay$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadTripOfTheDay),
