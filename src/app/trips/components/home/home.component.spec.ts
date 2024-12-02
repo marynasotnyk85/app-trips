@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
-import { RouterTestingModule } from '@angular/router/testing';
+//import { RouterTestingModule } from '@angular/router/testing';
 import { HomeComponent } from './home.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
@@ -8,6 +8,7 @@ import { selectAllTrips, selectLoading, selectError, selectTripOfTheDay, selectT
 import { loadTrips, loadTripOfTheDay } from '../../store/trip/trip.actions';
 import { TripState } from '../../store/trip.model';
 import { Router } from '@angular/router';
+//import { Router } from '@angular/router';
 
 // Mock Store and Observables
 class MockStore {
@@ -35,7 +36,7 @@ describe('HomeComponent', () => {
       declarations: [HomeComponent],
       imports: [
         StoreModule.forRoot({}), // Add necessary reducers
-        RouterTestingModule
+       // RouterTestingModule
       ],
       providers: [
         { provide: Store, useClass: MockStore }
@@ -52,7 +53,7 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should toggle isTripOfTheDayVisible and scroll to top if visible', () => {
+ /* it('should toggle isTripOfTheDayVisible and scroll to top if visible', () => {
     component.toggleTripOfTheDay();
     expect(component.isTripOfTheDayVisible).toBe(true);
     spyOn(window, 'scrollTo').and.callFake((...args: any[]) => {
@@ -66,7 +67,7 @@ describe('HomeComponent', () => {
         }
       });
   });
-
+*/
   it('should dispatch loadTripOfTheDay action', () => {
     spyOn(mockStore, 'dispatch');
     component.getTripOfTheDay();

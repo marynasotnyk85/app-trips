@@ -1,26 +1,25 @@
 <div *ngIf="trips$ | async as trips">
-
   <ng-container *ngIf="trips.length > 0; else noTrips">
-    <!-- Trip Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <app-trip-card
-        *ngFor="let trip of trips"
-        [trip]="trip"
-        (click)="viewTripDetails(trip.id)"
-      ></app-trip-card>
+    <!-- Trip Cards Flex Layout with responsive gap -->
+    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3">
+      <div *ngFor="let trip of trips">
+        <app-trip-card
+          [trip]="trip"
+          (click)="viewTripDetails(trip.id)"
+        ></app-trip-card>
+      </div>
     </div>
+
 
     <!-- Pagination -->
     <div class="flex justify-center py-8" *ngIf="totalPages > 1">
-
-        <div class="flex justify-center">
-          <app-pagination
-            [totalPages]="totalPages"
-            [currentPage]="currentPage"
-            (onPageChange)="onPageChange.emit($event)"
-          ></app-pagination>
-        </div>
-
+      <div class="flex justify-center">
+        <app-pagination
+          [totalPages]="totalPages"
+          [currentPage]="currentPage"
+          (onPageChange)="onPageChange.emit($event)"
+        ></app-pagination>
+      </div>
     </div>
   </ng-container>
 </div>

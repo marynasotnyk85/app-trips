@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sorting',
@@ -6,9 +6,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./sorting.component.css']
 })
 export class SortingComponent {
-  sortBy = ''; // Default sorting field
-  sortOrder = 'ASC'; // Default sorting order
-
+  @Input() sortBy = ''; // Receive default sortBy from parent
+  @Input() sortOrder = ''; // Receive default sortOrder from parent
   @Output() onSort = new EventEmitter<{ sortBy: string; sortOrder: string }>();
 
   applySorting(): void {

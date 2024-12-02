@@ -11,8 +11,10 @@ import {
   selectTotalPages,
   selectTotalTrips,
 } from '../../store/trip/trip.selectors';
-import { Router } from '@angular/router';
+
 import { settings } from '../../../constants/constants.endpoint';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -37,9 +39,20 @@ export class HomeComponent implements OnInit {
   isTripOfTheDayVisible = false; 
   totalPagination!:number;
 
-  constructor(private store: Store<TripState>, private router: Router) {}
+
+
+  constructor(private store: Store<TripState>, private router: Router,  private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.currentPage = +params['page'] || this.currentPage;
+      this.sortBy = params['sortBy'] || this.sortBy;
+      this.sortOrder = params['sortOrder'] || this.sortOrder;
+  
+      // Reload trips based on query params
+      this.loadTrips();
+    });
+    
     // Fetch trips and trip of the day
     this.trips$ = this.store.select(selectAllTrips);
     this.loading$ = this.store.select(selectLoading);
@@ -50,7 +63,6 @@ export class HomeComponent implements OnInit {
 
     this.totalPages$.subscribe((pages) => {
       this.totalPages = pages;
-      console.log('Total Pages:', this.totalPages); // Log the total pages
     });
 
     // Load initial data
@@ -92,17 +104,22 @@ export class HomeComponent implements OnInit {
     this.loadTrips();
   }
 
-  applySorting(sortBy: string, sortOrder: string): void {
+  applySorting({ sortBy, sortOrder }: { sortBy: string; sortOrder: string }): void {
     this.sortBy = sortBy;
     this.sortOrder = sortOrder;
     this.loadTrips();
   }
 
-
  
 
   // Method to handle navigation to trip details
   viewTripDetails(tripId: string): void {
-    this.router.navigate(['/trips', tripId]);
+    this.router.navigate(['/trips', tripId], {
+      queryParams: {
+        page: this.currentPage,
+        sortBy: this.sortBy,
+        sortOrder: this.sortOrder,
+      },
+    });
   }
 }
