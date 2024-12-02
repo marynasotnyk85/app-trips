@@ -16,6 +16,7 @@ import { SortingComponent } from '../shared/sorting/sorting.component';
 import { TripOfTheDayComponent } from './components/trip-of-the-day/trip-of-the-day.component';
 import { PaginationComponent } from '../shared/pagination/pagination.component';
 
+
 @NgModule({
   declarations: [
     HomeComponent, 

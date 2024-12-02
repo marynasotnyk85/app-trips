@@ -1,0 +1,18 @@
+/* Ensure the html and body take up the full height */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+/* The app container is a flex container with column direction */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+}
+
+/* Main content area should grow to fill available space */
+.content {
+  flex: 1; /* Pushes the footer to the bottom */
+}

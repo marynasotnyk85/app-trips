@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './shared/header/header.component';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './shared/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     HttpClientModule,
     FormsModule,
     StoreModule.forRoot({}), // Root state (empty if no global state)
-    EffectsModule.forRoot([]), // Root effects (empty for now)
+    EffectsModule.forRoot([]), BrowserAnimationsModule, // Root effects (empty for now)
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
+
+
 import { Trip, TripState } from '../../store/trip.model';
 import { loadTripOfTheDay, loadTrips  } from '../../store/trip/trip.actions';
 import {
@@ -13,14 +18,14 @@ import {
 } from '../../store/trip/trip.selectors';
 
 import { settings } from '../../../constants/constants.endpoint';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
+
+
   trips$!: Observable<any[]>; // Observable for trips data
   loading$!: Observable<boolean>; // Loading state
   error$!: Observable<string | null>; // Error messages
@@ -70,6 +75,7 @@ export class HomeComponent implements OnInit {
 
   }
 
+
   loadTrips(): void {
     this.store.dispatch(
       loadTrips({
@@ -105,9 +111,19 @@ export class HomeComponent implements OnInit {
   }
 
   applySorting({ sortBy, sortOrder }: { sortBy: string; sortOrder: string }): void {
+
+    if (this.sortBy === sortBy && this.sortOrder === sortOrder) {
+      return; // No need to reload if sort parameters are unchanged
+    }
     this.sortBy = sortBy;
     this.sortOrder = sortOrder;
     this.loadTrips();
+
+    // Smooth scroll to top
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
   }
 
  

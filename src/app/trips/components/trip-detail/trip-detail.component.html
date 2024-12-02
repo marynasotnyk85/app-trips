@@ -1,11 +1,3 @@
-<div *ngIf="loading$ | async" class="flex justify-center items-center h-screen">
-  <div class="loader"></div>
-  <p class="text-gray-500">Loading...</p>
-</div>
-
-<div *ngIf="error$ | async as error" class="p-4 bg-red-100 text-red-600 rounded-lg shadow-md">
-  Error: {{ error }}
-</div>
 
 <div *ngIf="trip$ | async as trip"
  class="max-w-4xl mx-auto mt-6 p-6 bg-white rounded-lg shadow-md">
@@ -32,7 +24,7 @@
     <!-- Details -->
     <div class="flex-1">
       <h1 class="font-heading text-heading text-textColor text-2xl  mb-4">{{ trip.title }}</h1>
-      <div class="w-16 h-1 mt-8 bg-secondaryBlue block"></div>
+      <div class="w-16 h-1 mt-8 mb-20 bg-secondaryBlue block"></div>
       <p class="font-body text-body text-textColor mt-20 mb-4">{{ trip.description }}</p>
 
       <div class="mb-4 mt-20">
@@ -57,4 +49,12 @@
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="loading$ | async" class="flex justify-center items-center h-screen">
+  <div class="loader"></div>
+  <p class="text-gray-500">Loading...</p>
+</div>
+
+<div *ngIf="error$ | async as error" class="p-4 bg-red-100 text-red-600 rounded-lg shadow-md">
+  Error: {{ error }}
 </div>
