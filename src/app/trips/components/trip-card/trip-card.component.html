@@ -1,5 +1,9 @@
-<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full hover:shadow-lg">
-  <div class="flex justify-center relative h-80 m-2.5 overflow-hidden rounded-md">
+<div
+  class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full hover:shadow-lg"
+>
+  <div
+    class="flex justify-center relative h-80 m-2.5 overflow-hidden rounded-md"
+  >
     <img
       [src]="trip.thumbnailUrl"
       alt="{{ trip.title }}"
@@ -7,7 +11,9 @@
     />
   </div>
   <div class="p-4">
-    <h6 class="flex justify-center mb-2 font-heading text-heading text-textColor">
+    <h6
+      class="flex justify-center mb-2 font-heading text-heading text-textColor"
+    >
       {{ trip.title }}
     </h6>
   </div>
@@ -22,12 +28,12 @@
       </p>
     </div>
 
-  <div class="px-4 pb-4 pt-0 mt-2">
-    <app-trip-badge
-      [rating]="trip.rating"
-      [nrOfRatings]="trip.nrOfRatings"
-      [co2]="trip.co2"
-    ></app-trip-badge>
+    <div class="px-4 pb-4 pt-0 mt-2">
+      <app-trip-badge
+        [rating]="trip.rating"
+        [nrOfRatings]="trip.nrOfRatings"
+        [co2]="trip.co2"
+      ></app-trip-badge>
+    </div>
   </div>
-</div>
 </div>

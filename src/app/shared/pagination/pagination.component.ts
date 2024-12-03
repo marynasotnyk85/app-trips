@@ -6,9 +6,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./pagination.component.css'],
 })
 export class PaginationComponent {
-  @Input() totalPages!: number; 
-  @Input() currentPage!: number; 
-  @Output() onPageChange = new EventEmitter<number>(); 
+  @Input() totalPages!: number;
+  @Input() currentPage!: number;
+  @Output() onPageChange = new EventEmitter<number>();
 
   get middlePages(): number[] {
     // Calculate middle pages to display

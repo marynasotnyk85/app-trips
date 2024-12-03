@@ -12,7 +12,6 @@ import {
 } from './trip.actions';
 import { TripState } from '../trip.model';
 
-
 export const initialState: TripState = {
   trips: [],
   tripDetail: null,

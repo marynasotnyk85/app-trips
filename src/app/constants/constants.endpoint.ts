@@ -8,5 +8,5 @@ export const trips = {
 };
 
 export const settings = {
-  limit_cards_in_page : 9
-}
+  limit_cards_in_page: 9,
+};

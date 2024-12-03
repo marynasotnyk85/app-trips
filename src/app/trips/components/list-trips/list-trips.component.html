@@ -1,7 +1,9 @@
 <div *ngIf="trips$ | async as trips">
   <ng-container *ngIf="trips.length > 0; else noTrips">
     <!-- Trip Cards Flex Layout with responsive gap -->
-    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3">
+    <div
+      class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3"
+    >
       <div *ngFor="let trip of trips">
         <app-trip-card
           [trip]="trip"
@@ -9,7 +11,6 @@
         ></app-trip-card>
       </div>
     </div>
-
 
     <!-- Pagination -->
     <div class="flex justify-center py-8" *ngIf="totalPages > 1">

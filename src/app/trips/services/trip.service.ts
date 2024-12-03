@@ -38,15 +38,12 @@ export class TripService {
       .set('sortBy', sortBy.toString())
       .set('sortOrder', sortOrder.toString());
 
- 
-
     return this.http
-      .get<{ trips: Trip[]; total: number; page: number }>(
-        trips.GET_TRIPS,
-        { params }
-      )
+      .get<{ trips: Trip[]; total: number; page: number }>(trips.GET_TRIPS, {
+        params,
+      })
       .pipe(
-        tap((data) => console.log('Trip Service Data:', data)), 
+        tap((data) => console.log('Trip Service Data:', data)),
         catchError((error) => {
           console.error('Trip Service Error:', error);
           throw error;
@@ -59,9 +56,9 @@ export class TripService {
    * @param id - Trip ID.
    */
   getTripDetails(id: string): Observable<Trip> {
-    const endpoint = trips.GET_TRIP_DETAIL.replace('{id}', id); 
+    const endpoint = trips.GET_TRIP_DETAIL.replace('{id}', id);
     return this.http.get<Trip>(endpoint).pipe(
-      tap((data) => console.log('Trip Details:', data)), 
+      tap((data) => console.log('Trip Details:', data)),
       catchError((error) => {
         this.errorSubject.next('Failed to fetch trip details.');
         console.error('Trip Details Error:', error);
@@ -75,7 +72,7 @@ export class TripService {
    */
   getTripOfTheDay(): Observable<Trip> {
     return this.http.get<Trip>(trips.GET_TRIP_OF_THE_DAY).pipe(
-      tap((data) => console.log('Trip of the Day:', data)), 
+      tap((data) => console.log('Trip of the Day:', data)),
       catchError((error) => {
         this.errorSubject.next('Failed to fetch trip of the day.');
         console.error('Trip of the Day Error:', error);

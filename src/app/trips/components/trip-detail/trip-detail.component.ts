@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Trip } from '../../store/trip.model';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { loadTripDetail } from 'src/app/trips/store/trip/trip.actions';
 import { Store } from '@ngrx/store';
 import {
@@ -39,6 +39,6 @@ export class TripDetailComponent implements OnInit {
   goBack(): void {
     this.router.navigate(['/trips'], {
       queryParamsHandling: 'preserve',
-    }); 
+    });
   }
 }

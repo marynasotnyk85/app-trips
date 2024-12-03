@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TripService } from './trip.service';
 import { trips } from '../../constants/constants.endpoint';
 import { Trip } from '../store/trip.model';
@@ -30,7 +33,9 @@ describe('TripService', () => {
       expect(trip).toEqual(mockTrip);
     });
 
-    const req = httpMock.expectOne(trips.GET_TRIP_DETAIL.replace('{id}', tripId));
+    const req = httpMock.expectOne(
+      trips.GET_TRIP_DETAIL.replace('{id}', tripId)
+    );
     expect(req.request.method).toBe('GET');
     req.flush(mockTrip);
   });
@@ -46,8 +51,4 @@ describe('TripService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(mockTrip);
   });
-
-  
-
-
 });

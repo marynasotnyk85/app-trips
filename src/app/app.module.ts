@@ -14,8 +14,6 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './shared/footer/footer.component';
 
-
-
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
@@ -23,8 +21,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({}), 
-    EffectsModule.forRoot([]), 
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],

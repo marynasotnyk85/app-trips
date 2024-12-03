@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 import { Trip, TripState } from '../../store/trip.model';
-import { loadTripOfTheDay, loadTrips  } from '../../store/trip/trip.actions';
+import { loadTripOfTheDay, loadTrips } from '../../store/trip/trip.actions';
 import {
   selectAllTrips,
   selectError,
@@ -21,42 +21,39 @@ import { settings } from '../../../constants/constants.endpoint';
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
-
 export class HomeComponent implements OnInit {
-
   trips$!: Observable<any[]>; // Observable for trips data
   loading$!: Observable<boolean>; // Loading state
   error$!: Observable<string | null>; // Error messages
-  tripOfTheDay$! : Observable<Trip | null>; //= this.store.select(selectTripOfTheDay); // Trip of the day
+  tripOfTheDay$!: Observable<Trip | null>; //= this.store.select(selectTripOfTheDay); // Trip of the day
   totalPages$!: Observable<number>;
   totalTrips$!: Observable<number>;
 
-
   totalPages!: number;
 
-
-
   currentPage = 1; // Pagination state
-  limit =  settings.limit_cards_in_page; // Items per page
+  limit = settings.limit_cards_in_page; // Items per page
   sortBy = 'creationDate';
   sortOrder = 'ASC';
-  isTripOfTheDayVisible = false; 
-  totalPagination!:number;
+  isTripOfTheDayVisible = false;
+  totalPagination!: number;
 
-
-
-  constructor(private store: Store<TripState>, private router: Router,  private route: ActivatedRoute) {}
+  constructor(
+    private store: Store<TripState>,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.currentPage = +params['page'] || this.currentPage;
       this.sortBy = params['sortBy'] || this.sortBy;
       this.sortOrder = params['sortOrder'] || this.sortOrder;
-  
+
       // Reload trips based on query params
       this.loadTrips();
     });
-    
+
     // Fetch trips and trip of the day
     this.trips$ = this.store.select(selectAllTrips);
     this.loading$ = this.store.select(selectLoading);
@@ -73,7 +70,6 @@ export class HomeComponent implements OnInit {
     this.loadTrips();
   }
 
-
   loadTrips(): void {
     this.store.dispatch(
       loadTrips({
@@ -83,18 +79,17 @@ export class HomeComponent implements OnInit {
         sortOrder: this.sortOrder,
       })
     );
-   
   }
 
-   // Toggle "Trip of the Day" view
-   toggleTripOfTheDay(): void {
+  // Toggle "Trip of the Day" view
+  toggleTripOfTheDay(): void {
     this.isTripOfTheDayVisible = !this.isTripOfTheDayVisible;
-       if (this.isTripOfTheDayVisible) {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth',
-        });
-      }
+    if (this.isTripOfTheDayVisible) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
   }
 
   getTripOfTheDay(): void {
@@ -106,8 +101,13 @@ export class HomeComponent implements OnInit {
     this.loadTrips();
   }
 
-  applySorting({ sortBy, sortOrder }: { sortBy: string; sortOrder: string }): void {
-
+  applySorting({
+    sortBy,
+    sortOrder,
+  }: {
+    sortBy: string;
+    sortOrder: string;
+  }): void {
     if (this.sortBy === sortBy && this.sortOrder === sortOrder) {
       return; // No need to reload if sort parameters are unchanged
     }
@@ -115,8 +115,6 @@ export class HomeComponent implements OnInit {
     this.sortOrder = sortOrder;
     this.loadTrips();
   }
-
- 
 
   // Method to handle navigation to trip details
   viewTripDetails(tripId: string): void {

@@ -9,7 +9,7 @@ export const loadTrips = createAction(
     limit: number;
     sortBy: string;
     sortOrder: string;
-  }>() 
+  }>()
 );
 
 export const loadTripsSuccess = createAction(
@@ -25,7 +25,7 @@ export const loadTripsFailure = createAction(
 /* LOAD TRIP DETAIL */
 export const loadTripDetail = createAction(
   '[Trip API] Load Trip Detail',
-  props<{ id: string }>() 
+  props<{ id: string }>()
 );
 
 export const loadTripDetailSuccess = createAction(

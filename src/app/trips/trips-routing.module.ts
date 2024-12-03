@@ -6,7 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 const routes: Routes = [
   // Trips home
   { path: '', component: HomeComponent },
-  // Trip detail with 
+  // Trip detail with
   { path: ':id', component: TripDetailComponent },
 ];
 

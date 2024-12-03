@@ -1,18 +1,27 @@
-<div class="flex items-center  gap-4 mb-4">
-    <label for="sortBy" class="font-medium">Sort by:</label>
-    <select id="sortBy" [(ngModel)]="sortBy" class="border p-2 rounded" (change)="applySorting()">
+<div class="flex items-center gap-4 mb-4">
+  <label for="sortBy" class="font-medium">Sort by:</label>
+  <select
+    id="sortBy"
+    [(ngModel)]="sortBy"
+    class="border p-2 rounded"
+    (change)="applySorting()"
+  >
     <option value="title">Title</option>
     <option value="price">Price</option>
     <option value="rating">Rating</option>
     <option value="creationDate">Creation Date</option>
     <option value="verticalType">Vertical Type</option>
-    </select>
+  </select>
   <div class="mx-32">
     <label for="sortOrder" class="font-medium px-2.5">Order:</label>
-    <select id="sortOrder" [(ngModel)]="sortOrder" class="border p-2 rounded" (change)="applySorting()">
+    <select
+      id="sortOrder"
+      [(ngModel)]="sortOrder"
+      class="border p-2 rounded"
+      (change)="applySorting()"
+    >
       <option value="ASC">Ascending</option>
       <option value="DESC">Descending</option>
     </select>
   </div>
 </div>
-  

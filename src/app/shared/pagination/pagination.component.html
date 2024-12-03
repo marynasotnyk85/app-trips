@@ -1,68 +1,67 @@
 <div class="flex justify-center space-x-2">
-    <!-- Previous Button -->
+  <!-- Previous Button -->
+  <button
+    class="btn btn-primary"
+    [disabled]="currentPage === 1"
+    (click)="previousPage()"
+  >
+    Prev
+  </button>
+
+  <!-- First Page -->
+  <button
+    (click)="goToPage(1)"
+    [class.bg-primaryBlue]="currentPage === 1"
+    [class.text-white]="currentPage === 1"
+    [class.text-slate-600]="currentPage !== 1"
+    [class.bg-transparent]="currentPage !== 1"
+    class="min-w-9 rounded-md py-2 px-3 border text-center text-sm transition-all shadow-md"
+  >
+    1
+  </button>
+
+  <!-- Left Ellipsis -->
+  <ng-container *ngIf="currentPage > 3">
+    <span class="text-gray-500">...</span>
+  </ng-container>
+
+  <!-- Middle Pages -->
+  <ng-container *ngFor="let page of middlePages">
     <button
-      class="btn btn-primary"
-      [disabled]="currentPage === 1"
-      (click)="previousPage()"
-    >
-      Prev
-    </button>
-  
-    <!-- First Page -->
-    <button
-      (click)="goToPage(1)"
-      [class.bg-primaryBlue]="currentPage === 1"
-      [class.text-white]="currentPage === 1"
-      [class.text-slate-600]="currentPage !== 1"
-      [class.bg-transparent]="currentPage !== 1"
+      (click)="goToPage(page)"
+      [class.bg-primaryBlue]="currentPage === page"
+      [class.text-white]="currentPage === page"
+      [class.text-slate-600]="currentPage !== page"
+      [class.bg-transparent]="currentPage !== page"
       class="min-w-9 rounded-md py-2 px-3 border text-center text-sm transition-all shadow-md"
     >
-      1
+      {{ page }}
     </button>
-  
-    <!-- Left Ellipsis -->
-    <ng-container *ngIf="currentPage > 3">
-      <span class="text-gray-500">...</span>
-    </ng-container>
-  
-    <!-- Middle Pages -->
-    <ng-container *ngFor="let page of middlePages">
-      <button
-        (click)="goToPage(page)"
-        [class.bg-primaryBlue]="currentPage === page"
-        [class.text-white]="currentPage === page"
-        [class.text-slate-600]="currentPage !== page"
-        [class.bg-transparent]="currentPage !== page"
-        class="min-w-9 rounded-md py-2 px-3 border text-center text-sm transition-all shadow-md"
-      >
-        {{ page }}
-      </button>
-    </ng-container>
-  
-    <!-- Right Ellipsis -->
-    <ng-container *ngIf="currentPage < totalPages - 2">
-      <span class="text-gray-500">...</span>
-    </ng-container>
-  
-    <!-- Last Page -->
-    <button
-      (click)="goToPage(totalPages)"
-      [class.bg-primaryBlue]="currentPage === totalPages"
-      [class.text-white]="currentPage === totalPages"
-      [class.text-slate-600]="currentPage !== totalPages"
-      [class.bg-transparent]="currentPage !== totalPages"
-      class="min-w-9 rounded-md py-2 px-3 border text-center text-sm transition-all shadow-md"
-    >
-      {{ totalPages }}
-    </button>
-  
-    <!-- Next Button -->
-    <button
-      class="btn btn-primary"
-      [disabled]="currentPage === totalPages"
-      (click)="nextPage()"
-    >
-      Next
-    </button>
-  </div>
-  
+  </ng-container>
+
+  <!-- Right Ellipsis -->
+  <ng-container *ngIf="currentPage < totalPages - 2">
+    <span class="text-gray-500">...</span>
+  </ng-container>
+
+  <!-- Last Page -->
+  <button
+    (click)="goToPage(totalPages)"
+    [class.bg-primaryBlue]="currentPage === totalPages"
+    [class.text-white]="currentPage === totalPages"
+    [class.text-slate-600]="currentPage !== totalPages"
+    [class.bg-transparent]="currentPage !== totalPages"
+    class="min-w-9 rounded-md py-2 px-3 border text-center text-sm transition-all shadow-md"
+  >
+    {{ totalPages }}
+  </button>
+
+  <!-- Next Button -->
+  <button
+    class="btn btn-primary"
+    [disabled]="currentPage === totalPages"
+    (click)="nextPage()"
+  >
+    Next
+  </button>
+</div>

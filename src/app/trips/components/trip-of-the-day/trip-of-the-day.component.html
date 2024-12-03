@@ -1,37 +1,55 @@
 <div>
-  <div *ngIf="tripOfTheDay$ | async as tripOfTheDay; else noTrip" 
-  class="flex flex-col gap-4 min-w-full"        (click)="viewTripDetails(tripOfTheDay.id)">
-  <div class="relative flex flex-col my-6 p-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96 hover:shadow-lg">
-    <h1 class="flex justify-center font-heading text-heading text-secondaryBlue "> Trip of the day</h1>
-    <img [src]="tripOfTheDay.thumbnailUrl" [alt]="tripOfTheDay.title" class="w-full rounded-md" />
-    <div class="p-4">
-      <h6 class="flex justify-center font-heading text-heading text-textColor">
-        {{ tripOfTheDay.title }}
-      </h6>
-    </div>
-    <div class="w-16 h-1 bg-secondaryBlue block mx-auto"></div>
+  <div
+    *ngIf="tripOfTheDay$ | async as tripOfTheDay; else noTrip"
+    class="flex flex-col gap-4 min-w-full"
+    (click)="viewTripDetails(tripOfTheDay.id)"
+  >
+    <div
+      class="relative flex flex-col my-6 p-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96 hover:shadow-lg"
+    >
+      <h1
+        class="flex justify-center font-heading text-heading text-secondaryBlue"
+      >
+        Trip of the day
+      </h1>
+      <img
+        [src]="tripOfTheDay.thumbnailUrl"
+        [alt]="tripOfTheDay.title"
+        class="w-full rounded-md"
+      />
+      <div class="p-4">
+        <h6
+          class="flex justify-center font-heading text-heading text-textColor"
+        >
+          {{ tripOfTheDay.title }}
+        </h6>
+      </div>
+      <div class="w-16 h-1 bg-secondaryBlue block mx-auto"></div>
 
-      <div class="p-4 flex justify-between">  
-     <div><p class="font-body text-body text-textColor leading-normal font-light">
-        Price: {{ tripOfTheDay.price | currency }}
-      </p>
-      <p class="font-body text-body text-textColor leading-normal font-light">
-        Rating: {{ tripOfTheDay.rating }}
-      </p>
+      <div class="p-4 flex justify-between">
+        <div>
+          <p
+            class="font-body text-body text-textColor leading-normal font-light"
+          >
+            Price: {{ tripOfTheDay.price | currency }}
+          </p>
+          <p
+            class="font-body text-body text-textColor leading-normal font-light"
+          >
+            Rating: {{ tripOfTheDay.rating }}
+          </p>
+        </div>
+        <div class="px-4 pb-4 pt-0 mt-2">
+          <app-trip-badge
+            [rating]="tripOfTheDay.rating"
+            [nrOfRatings]="tripOfTheDay.nrOfRatings"
+            [co2]="tripOfTheDay.co2"
+          ></app-trip-badge>
+        </div>
+      </div>
     </div>
-    <div class="px-4 pb-4 pt-0 mt-2">
-      <app-trip-badge
-      [rating]="tripOfTheDay.rating"
-      [nrOfRatings]="tripOfTheDay.nrOfRatings"
-      [co2]="tripOfTheDay.co2"
-    ></app-trip-badge>
-    </div>
-  </div>
-</div>
-    
   </div>
   <ng-template #noTrip>
     <p>No Trip of the Day available.</p>
   </ng-template>
 </div>
-
