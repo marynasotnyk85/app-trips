@@ -1,12 +1,27 @@
+<!-- Loading State -->
+<div *ngIf="loading$ | async" class="flex justify-center items-center h-screen">
+  <div class="loader"></div>
+  <p class="text-gray-500">Loading trip details...</p>
+</div>
+
+<!-- Error State -->
 <div
-  *ngIf="trip$ | async as trip"
-  class="max-w-4xl mx-auto mt-6 p-6 bg-white rounded-lg shadow-md"
+  *ngIf="error$ | async as error"
+  class="p-4 bg-red-100 text-red-600 rounded-lg shadow-md"
+>
+  Error: {{ error }}
+</div>
+
+<!-- Trip Details -->
+<div
+  *ngIf="trip$ | async as trip; else noTrip"
+  class="max-w-4xl mx-auto mt-6 p-4 sm:p-6 md:p-8 bg-white rounded-lg shadow-md"
 >
   <!-- Back Button -->
   <div class="mb-4">
     <button
       (click)="goBack()"
-      class="btn-secondaryBlue inline-flex items-center px-4 py-2 text-white shadow-md transition"
+      class="btn-secondaryBlue inline-flex items-center px-3 sm:px-4 py-2 text-white shadow-md transition"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -27,47 +42,60 @@
   </div>
 
   <!-- Trip Details -->
-  <div class="flex flex-col lg:flex-row items-start gap-6">
+  <div class="flex flex-col md:flex-row items-start gap-6 sm:gap-8 md:gap-10">
     <!-- Image -->
-    <div class="w-full lg:w-1/2">
+    <div class="w-full md:w-1/2 relative">
+      <!-- Placeholder Spinner -->
+      <div
+        *ngIf="isImageLoading"
+        class="absolute inset-0 flex items-center justify-center bg-gray-100"
+      >
+        <div class="loader"></div>
+      </div>
+
       <img
-        [src]="trip.imageUrl"
+        [src]="imageSrc"
         [alt]="trip.title"
         class="rounded-lg shadow-md w-full object-cover"
+        (load)="onImageLoad()"
       />
     </div>
 
     <!-- Details -->
     <div class="flex-1">
-      <h1 class="font-heading text-heading text-textColor text-2xl mb-4">
+      <h1
+        class="font-heading text-heading text-textColor text-xl sm:text-2xl md:text-3xl mb-4"
+      >
         {{ trip.title }}
       </h1>
-      <div class="w-16 h-1 mt-8 mb-20 bg-secondaryBlue block"></div>
-      <p class="font-body text-body text-textColor mt-20 mb-4">
+      <div
+        class="w-12 sm:w-16 h-1 mt-6 sm:mt-8 mb-10 sm:mb-12 md:mb-20 bg-secondaryBlue block"
+      ></div>
+      <p class="font-body text-body text-textColor mt-4 sm:mt-8 md:mt-20 mb-4">
         {{ trip.description }}
       </p>
 
-      <div class="mb-4 mt-20">
-        <p class="font-body text-body text-textColor my-10">
+      <div class="mb-4 mt-10 sm:mt-12 md:mt-20">
+        <p class="font-body text-body text-textColor my-6 sm:my-8 md:my-10">
           <span class="text-secondaryBlue font-semibold">Price:</span>
           {{ trip.price | currency }}
         </p>
-        <p class="font-body text-body text-textColor my-10">
+        <p class="font-body text-body text-textColor my-6 sm:my-8 md:my-10">
           <span class="text-secondaryBlue font-semibold">Rating:</span>
           {{ trip.rating }}
         </p>
-        <p class="font-body text-body text-textColor my-10">
+        <p class="font-body text-body text-textColor my-6 sm:my-8 md:my-10">
           <span class="text-secondaryBlue font-semibold">CO2 Emissions:</span>
           {{ trip.co2 }} kg
         </p>
       </div>
 
       <div class="mt-4">
-        <p class="font-body text-body text-textColor my-10">
+        <p class="font-body text-body text-textColor my-4 sm:my-6 md:my-10">
           <span class="text-secondaryBlue font-semibold">Tags: </span>
           <span
             *ngFor="let tag of trip.tags"
-            class="inline-block bg-blue-100 text-secondaryBlue px-2 py-1 rounded-full mr-2"
+            class="inline-block bg-blue-100 text-secondaryBlue px-2 sm:px-3 py-1 sm:py-1.5 rounded-full mr-2"
           >
             {{ tag }}
           </span>
@@ -76,14 +104,6 @@
     </div>
   </div>
 </div>
-<div *ngIf="loading$ | async" class="flex justify-center items-center h-screen">
-  <div class="loader"></div>
-  <p class="text-gray-500">Loading...</p>
-</div>
-
-<div
-  *ngIf="error$ | async as error"
-  class="p-4 bg-red-100 text-red-600 rounded-lg shadow-md"
->
-  Error: {{ error }}
-</div>
+<ng-template #noTrip>
+  <p class="text-gray-500">No trip details available.</p>
+</ng-template>

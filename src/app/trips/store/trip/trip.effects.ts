@@ -13,6 +13,7 @@ import {
   loadTripOfTheDay,
   loadTripOfTheDaySuccess,
   loadTripOfTheDayFailure,
+  resetTripDetail,
 } from './trip.actions';
 
 @Injectable()
@@ -53,6 +54,18 @@ export class TripEffects {
         )
       )
     )
+  );
+
+  resetTripDetails$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(resetTripDetail),
+        // Here you can handle post-reset logic
+        tap(() => {
+          console.log('Trip details reset');
+        })
+      ),
+    { dispatch: false }
   );
 
   loadTripOfTheDay$ = createEffect(() =>

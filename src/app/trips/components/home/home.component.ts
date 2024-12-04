@@ -15,7 +15,7 @@ import {
   selectTotalTrips,
 } from '../../store/trip/trip.selectors';
 
-import { settings } from '../../../constants/constants.endpoint';
+import { settings } from '../../../constants/constants.settings';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   trips$!: Observable<any[]>; // Observable for trips data
   loading$!: Observable<boolean>; // Loading state
   error$!: Observable<string | null>; // Error messages
-  tripOfTheDay$!: Observable<Trip | null>; //= this.store.select(selectTripOfTheDay); // Trip of the day
+  tripOfTheDay$!: Observable<Trip | null>; // Trip of the day
   totalPages$!: Observable<number>;
   totalTrips$!: Observable<number>;
 
@@ -33,8 +33,8 @@ export class HomeComponent implements OnInit {
 
   currentPage = 1; // Pagination state
   limit = settings.limit_cards_in_page; // Items per page
-  sortBy = 'creationDate';
-  sortOrder = 'ASC';
+  sortBy = settings.sortBy;
+  sortOrder = settings.sortOrder;
   isTripOfTheDayVisible = false;
   totalPagination!: number;
 
@@ -116,7 +116,7 @@ export class HomeComponent implements OnInit {
     this.loadTrips();
   }
 
-  // Method to handle navigation to trip details
+  // navigation to trip details
   viewTripDetails(tripId: string): void {
     this.router.navigate(['/trips', tripId], {
       queryParams: {

@@ -9,8 +9,10 @@ import {
   loadTripOfTheDay,
   loadTripOfTheDaySuccess,
   loadTripOfTheDayFailure,
+  resetTripDetail,
 } from './trip.actions';
 import { TripState } from '../trip.model';
+import { settings } from '../../../constants/constants.settings';
 
 export const initialState: TripState = {
   trips: [],
@@ -18,11 +20,11 @@ export const initialState: TripState = {
   loading: false,
   error: null,
   page: 1,
-  limit: 10,
+  limit: settings.limit_cards_in_page,
   totalTrips: 0,
   totalPages: 0,
-  sortBy: '',
-  sortOrder: 'ASC',
+  sortBy: settings.sortBy,
+  sortOrder: settings.sortOrder,
   tripOfTheDay: null,
 };
 
@@ -39,9 +41,9 @@ export const tripReducer = createReducer(
   })),
   on(loadTripsSuccess, (state, { trips, totalTrips, totalPages }) => ({
     ...state,
-    trips: trips || [],
-    totalTrips: totalTrips || 0,
-    totalPages: totalPages || 0,
+    trips: trips,
+    totalTrips: totalTrips,
+    totalPages: totalPages,
     loading: false,
   })),
   on(loadTripsFailure, (state, { error }) => ({
@@ -66,6 +68,13 @@ export const tripReducer = createReducer(
     loading: false,
     error,
   })),
+  on(resetTripDetail, (state) => ({
+    ...state,
+    tripDetails: null,
+    error: null,
+    loading: false,
+  })),
+
   /* LOAD TRIP OF THE DAY  */
   on(loadTripOfTheDay, (state) => ({ ...state, loading: true })),
   on(loadTripOfTheDaySuccess, (state, { trip }) => ({

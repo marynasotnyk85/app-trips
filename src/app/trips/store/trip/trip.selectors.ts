@@ -37,7 +37,7 @@ export const selectTotalPages = createSelector(
 /* Select trip details*/
 export const selectTripDetails = createSelector(
   selectTripState,
-  (state) => state.tripDetail
+  (state) => state.tripDetail || null
 );
 
 /* LOAD TRIP OF THE DAY  */

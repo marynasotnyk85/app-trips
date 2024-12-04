@@ -19,7 +19,11 @@ describe('TripDetailComponent', () => {
   let mockActivatedRoute: ActivatedRoute;
 
   const initialState = {
-    trip: null,
+    trip: {
+      tripDetail: null,
+      loading: false,
+      error: null,
+    },
     loading: false,
     error: null,
   };

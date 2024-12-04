@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Trip } from '../../store/trip.model';
-import { Observable } from 'rxjs';
-import { loadTripDetail } from 'src/app/trips/store/trip/trip.actions';
+import { Observable, combineLatest, map } from 'rxjs';
+import {
+  loadTripDetail,
+  resetTripDetail,
+} from 'src/app/trips/store/trip/trip.actions';
 import { Store } from '@ngrx/store';
 import {
   selectError,
@@ -16,9 +19,11 @@ import {
   styleUrls: ['./trip-detail.component.css'],
 })
 export class TripDetailComponent implements OnInit {
-  trip$: Observable<Trip | null>;
+  trip$: Observable<any>;
   loading$: Observable<boolean>;
   error$: Observable<string | null>;
+  imageSrc: string = '';
+  isImageLoading: boolean = true;
 
   constructor(
     private store: Store,
@@ -32,7 +37,19 @@ export class TripDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const tripId = this.route.snapshot.paramMap.get('id')!;
+
     this.store.dispatch(loadTripDetail({ id: tripId }));
+    // update the imageSrc
+    this.trip$.subscribe((trip) => {
+      if (trip) {
+        this.isImageLoading = true;
+        this.imageSrc = trip.imageUrl;
+      }
+    });
+  }
+
+  onImageLoad(): void {
+    this.isImageLoading = false;
   }
 
   // Go back to the home page
@@ -40,5 +57,8 @@ export class TripDetailComponent implements OnInit {
     this.router.navigate(['/trips'], {
       queryParamsHandling: 'preserve',
     });
+  }
+  ngOnDestroy(): void {
+    this.store.dispatch(resetTripDetail());
   }
 }

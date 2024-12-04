@@ -38,6 +38,8 @@ export const loadTripDetailFailure = createAction(
   props<{ error: string }>()
 );
 
+export const resetTripDetail = createAction('[Trip] Reset Trip Details');
+
 /* LOAD TRIP OF THE DAY  */
 
 export const loadTripOfTheDay = createAction('[Trip API] Load Trip of the Day');
